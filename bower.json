@@ -1,0 +1,17 @@
+{
+  "name": "Reporte Client",
+  "authors": [
+    "Pepe Valdivia <<jvaldivia@softweb.pe>>"
+  ],
+  "description": "Simple cliente web para probar el servicio de reportes",
+  "main": "",
+  "license": "MIT",
+  "homepage": "softweb.pe",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
