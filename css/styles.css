@@ -1,2 +1,4 @@
 #repo1,#repo2{border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; border-left: 1px solid #ddd; padding: 15px;}
 #repo1{padding-top: 10px}
+.ui-datepicker{background: #FFF;border: 1px solid #CCC; margin-top: 10px;}
+.chart-repo{padding-top: 20px}

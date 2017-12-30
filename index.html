@@ -4,16 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Cliente de Reportes</title>
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="bower_components/jquery-ui/themes/base/datepicker.css" rel="stylesheet" type="text/css"/>
 	<link href="css/styles.css" rel="stylesheet" type="text/css"/>
 	<link rel="shortcut icon" href="img/favicon.ico">
 </head>
 <body>
 	<div class="container">
 		<h1>Cliente de Reportes</h1>
+		<br>
 		<ul>
 			<li>Reporte 1 : Datos durante todo un día.</li>
 			<li>Reporte 2 : Máximo, minimo y promedio entre un rango de días.</li>
 		</ul>
+		<br>
 		<div class="tab-content">
 			<ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="active"><a href="#repo1" aria-controls="repo1" role="tab" data-toggle="tab">Reporte 1</a></li>
@@ -24,21 +27,29 @@
 			  	<div class="col-md-3">
 					  <div class="form-group">
 					    <label for="repo1_sensor_id">Sensor ID</label>
-					    <input type="email" class="form-control" id="repo1_sensor_id" placeholder="Sensor ID">
+					    <input type="text" class="form-control" id="repo1_sensor_id" placeholder="Sensor ID">
 					  </div>
 					</div>
 					<div class="col-md-3">
 					  <div class="form-group">
 					    <label for="repo1_dia">Día</label>
-					    <input type="email" class="form-control" id="repo1_dia" placeholder="Día">
+					    <input type="text" class="form-control" id="repo1_dia" placeholder="dd/mm/aaaa">
 					  </div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
-						<button class="btn btn-default" id="repo1_btn">Generar Reporte</button>
+						<button class="btn btn-default btn-primary" id="repo1_btn_tabla">Generar Reporte - Tabla</button>
+					</div>
+					<div class="col-md-3">
+						<button class="btn btn-default btn-primary" id="repo1_btn_chart">Generar Reporte - Gráfica</button>
 					</div>
 				</div>
+				<div class="row">
+			  	<div class="col-md-12">
+						<canvas id="char_repo_1" width="400" height="100" class="chart-repo"></canvas>
+					</div>
+			  </div>
 		  </div>
 		  <div role="tabpanel" class="tab-pane fade" id="repo2">
 		  	Reporte 2
@@ -47,6 +58,8 @@
 	</div>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bower_components/jquery-ui/ui/widgets/datepicker.js"></script>
+	<script type="text/javascript" src="bower_components/chart.js/dist/Chart.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
