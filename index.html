@@ -52,7 +52,39 @@
 			  </div>
 		  </div>
 		  <div role="tabpanel" class="tab-pane fade" id="repo2">
-		  	Reporte 2
+		  	<div class="row">
+			  	<div class="col-md-3">
+					  <div class="form-group">
+					    <label for="repo1_sensor_id">Sensor ID</label>
+					    <input type="text" class="form-control" id="repo2_sensor_id" placeholder="Sensor ID">
+					  </div>
+					</div>
+					<div class="col-md-3">
+					  <div class="form-group">
+					    <label for="repo1_dia">Día Inicio</label>
+					    <input type="text" class="form-control" id="repo2_inicio" placeholder="dd/mm/aaaa">
+					  </div>
+					</div>
+					<div class="col-md-3">
+					  <div class="form-group">
+					    <label for="repo1_dia">Día Fin</label>
+					    <input type="text" class="form-control" id="repo2_fin" placeholder="dd/mm/aaaa">
+					  </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<button class="btn btn-default btn-primary" id="repo2_btn_tabla">Generar Reporte - Tabla</button>
+					</div>
+					<div class="col-md-3">
+						<button class="btn btn-default btn-primary" id="repo2_btn_chart">Generar Reporte - Gráfica</button>
+					</div>
+				</div>
+				<div class="row">
+			  	<div class="col-md-12">
+						<canvas id="char_repo_2" width="400" height="100" class="chart-repo"></canvas>
+					</div>
+			  </div>
 		  </div>
 		</div>
 	</div>

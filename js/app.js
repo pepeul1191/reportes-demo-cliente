@@ -60,7 +60,6 @@ $("#repo1_btn_chart").click(function() {
 	var dia = dia_array[2] + '.' + dia_array[1] + '.' + dia_array[0];
 	//http://localhost:3035/reporte/datos_dia?sensor_id=7&dia=2017.12.26
 	$.ajax({
-		//url: REPORTES + 'reporte/datos_dia', 
 		url: REPORTES + 'reporte/datos_dia?sensor_id=' + sensor_id + '&dia=' + dia, 
 		type: "GET", 
 		async: false, 
@@ -101,42 +100,135 @@ $("#repo1_btn_chart").click(function() {
 	});
 });
 
-	/*
-	var myChart = new Chart(ctx, {
-	    type: 'bar',
-	    data: {
-	        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-	        datasets: [{
-	            label: '# of Votes',
-	            data: [12, 19, 3, 5, 2, 3],
-	            backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	                'rgba(255, 206, 86, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(153, 102, 255, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
-	            ],
-	            borderColor: [
-	                'rgba(255,99,132,1)',
-	                'rgba(54, 162, 235, 1)',
-	                'rgba(255, 206, 86, 1)',
-	                'rgba(75, 192, 192, 1)',
-	                'rgba(153, 102, 255, 1)',
-	                'rgba(255, 159, 64, 1)'
-	            ],
-	            borderWidth: 1
-	        }]
-	    },
-	    options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero:true
-	                }
-	            }]
-	        }
-	    }
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+$("#repo2_inicio").datepicker({
+  showOtherMonths: true,
+  selectOtherMonths: true
+});
+
+$("#repo2_fin").datepicker({
+  showOtherMonths: true,
+  selectOtherMonths: true
+});
+
+$("#repo2_btn_chart").click(function() {
+	var sensor_id = $("#repo2_sensor_id").val();
+	var inicio_array = $("#repo2_inicio").val().split('/');
+	var fin_array = $("#repo2_fin").val().split('/');
+	var inicio = inicio_array[2] + '.' + inicio_array[1] + '.' + inicio_array[0];
+	var fin = fin_array[2] + '.' + fin_array[1] + '.' + fin_array[0];
+	//http://localhost:3035/reporte/max_min_avg_dias?sensor_id=7&inicio=2017.12.26&fin=2017.12.28
+	$.ajax({
+		url: REPORTES + 'reporte/max_min_avg_dias?sensor_id=' + sensor_id + '&inicio=' + inicio + '&fin=' + fin, 
+		type: "GET", 
+		async: false, 
+		success: function(data) {
+			var data_chart = [];
+			var axis_x = [];
+			var data_max = [];
+			var data_min = [];
+			var data_avg = [];
+			$.each(data, function(k, v) {
+		    data_chart.push(data[k]['dato']);
+				axis_x.push(k);
+				data_max.push(data[k]['max']);
+				data_min.push(data[k]['min']);
+				data_avg.push(data[k]['avg']);
+		  });
+			var ctx = document.getElementById("char_repo_2");
+			var data_chart = {
+        labels: axis_x,
+        datasets: [
+            {
+              label: "Máximo",
+              data: data_max,
+              backgroundColor: [
+                  "rgba(10,20,30,0.3)",
+                  "rgba(10,20,30,0.3)",
+                  "rgba(10,20,30,0.3)",
+                  "rgba(10,20,30,0.3)",
+                  "rgba(10,20,30,0.3)"
+              ],
+              borderColor: [
+                  "rgba(10,20,30,1)",
+                  "rgba(10,20,30,1)",
+                  "rgba(10,20,30,1)",
+                  "rgba(10,20,30,1)",
+                  "rgba(10,20,30,1)"
+              ],
+              borderWidth: 1
+            },
+            {
+              label: "Mínimo",
+              data: data_min,
+              backgroundColor: [
+                  "rgba(50,150,200,0.3)",
+                  "rgba(50,150,200,0.3)",
+                  "rgba(50,150,200,0.3)",
+                  "rgba(50,150,200,0.3)",
+                  "rgba(50,150,200,0.3)"
+              ],
+              borderColor: [
+                  "rgba(50,150,200,1)",
+                  "rgba(50,150,200,1)",
+                  "rgba(50,150,200,1)",
+                  "rgba(50,150,200,1)",
+                  "rgba(50,150,200,1)"
+              ],
+              borderWidth: 1
+            },
+            {
+              label: "Promedio",
+              data: data_avg,
+              backgroundColor: [
+                  "rgba(50,150,100,0.3)",
+                  "rgba(50,150,100,0.3)",
+                  "rgba(50,150,100,0.3)",
+                  "rgba(50,150,100,0.3)",
+                  "rgba(50,150,100,0.3)"
+              ],
+              borderColor: [
+                  "rgba(50,150,100,1)",
+                  "rgba(50,150,100,1)",
+                  "rgba(50,150,100,1)",
+                  "rgba(50,150,100,1)",
+                  "rgba(50,150,100,1)"
+              ],
+              borderWidth: 1
+            }
+        ]
+    	}; 
+    	var options = {
+        responsive: true,
+        title: {
+            display: true,
+            position: "top",
+            text: "Rerporte 2",
+            fontSize: 18,
+            fontColor: "#111"
+        },
+        legend: {
+            display: true,
+            position: "bottom",
+            labels: {
+                fontColor: "#333",
+                fontSize: 16
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0
+                }
+            }]
+        }
+    	};
+    	var chart = new Chart(ctx, {
+        type: "bar",
+        data: data_chart,
+        options: options
+    	});
+		}
 	});
 });
-*/
